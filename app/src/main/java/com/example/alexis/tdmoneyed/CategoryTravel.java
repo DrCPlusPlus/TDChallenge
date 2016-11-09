@@ -6,7 +6,7 @@ import android.os.Bundle;
  * Created by Alexis on 11/8/2016.
  */
 
-public class CatEntertainActivity {
+public class CategoryTravel {
 
     /**
      * The fragment argument representing the section number for this
@@ -14,7 +14,7 @@ public class CatEntertainActivity {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-    CatEntertainActivity(){}
+    CategoryTravel(){}
 
     /**
      * Returns a new instance of this fragment for the given section

@@ -1,5 +1,6 @@
 package com.example.alexis.tdmoneyed;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BuilderActivity extends AppCompatActivity {
 
@@ -41,8 +47,15 @@ public class BuilderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_builder);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(toolbar);
+        // Toolbar back button
+        Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(my_toolbar);
+        getSupportActionBar().setTitle("Build Budget");
+        getSupportActionBar().setIcon(R.drawable.td_shield);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new PagerAdapter(getSupportFragmentManager());
@@ -80,9 +93,16 @@ public class BuilderActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        Intent i;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_home) {
+            i = new Intent(this, MainActivity.class);
+            startActivity(i);
+            return true;
+        }
+        if (id == R.id.action_help) {
+            i = new Intent(this, MainActivity.class);
+            startActivity(i);
             return true;
         }
 

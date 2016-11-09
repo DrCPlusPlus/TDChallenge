@@ -6,15 +6,15 @@ import android.os.Bundle;
  * Created by Alexis on 11/8/2016.
  */
 
-public class CatCollegeActivity {
+public class CategoryEntertainment {
+
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
 
-
-    CatCollegeActivity(){}
+    CategoryEntertainment(){}
 
     /**
      * Returns a new instance of this fragment for the given section
