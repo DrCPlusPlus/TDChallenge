@@ -1,6 +1,8 @@
 package com.example.alexis.tdmoneyed;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -23,5 +25,12 @@ public class MainActivity extends AppCompatActivity {
     public void onClickBuild(View view){
         Intent i = new Intent(this, BuilderActivity.class);
         startActivity(i);
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
     }
 }

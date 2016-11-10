@@ -12,4 +12,55 @@
         <item>Books</item>
         <item>Class Fees</item>
     </string-array>
+
+    <!-- Category Food -->
+    <string-array name="category_food">
+        <item>Groceries</item>
+        <item>Snacks/Coffee</item>
+        <item>Dining Out</item>
+    </string-array>
+
+    <!-- Category Transportation -->
+    <string-array name="category_transportation">
+        <item>Car Payments</item>
+        <item>Gas/Fuel</item>
+        <item>Repairs/Maintenance</item>
+        <item>Other Transportation</item>
+    </string-array>
+
+    <!-- Category Debt -->
+    <string-array name="category_debt">
+        <item>Credit Cards</item>
+        <item>Student Loans</item>
+        <item>Other Loans</item>
+    </string-array>
+
+    <!-- Category Entertainment -->
+    <string-array name="category_entertainment">
+        <item>Cable/Internet</item>
+        <item>Computer/Accessories</item>
+        <item>Movies/Concerts/Sprots</item>
+        <item>Music/Videos</item>
+        <item>Hobbies</item>
+        <item>Cell Phone</item>
+    </string-array>
+
+    <!-- Category Pets -->
+    <string-array name="category_Pets">
+        <item>Food</item>
+        <item>Grooming</item>
+        <item>Vet Appointments</item>
+    </string-array>
+
+    <!-- Category Personal -->
+    <string-array name="category_personal">
+        <item>Gifts</item>
+        <item>Clothing/Shoes</item>
+        <item>Accessories</item>
+        <item>Laundry</item>
+        <item>Personal Grooming</item>
+        <item>Gym Membership</item>
+        <item>Household Needs</item>
+        <item>Miscellaneous</item>
+    </string-array>
 </resources>
