@@ -1,6 +1,8 @@
 package com.example.alexis.tdmoneyed;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,7 +27,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class BuilderActivity extends AppCompatActivity {
+
+    //public Budget budget = ((Budget)this.getApplication());
+
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -52,9 +59,6 @@ public class BuilderActivity extends AppCompatActivity {
         setSupportActionBar(my_toolbar);
         getSupportActionBar().setTitle("Build Budget");
         getSupportActionBar().setIcon(R.drawable.td_shield);
-//        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -68,14 +72,14 @@ public class BuilderActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
+            }
+        });
 
     }
 
@@ -108,5 +112,4 @@ public class BuilderActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

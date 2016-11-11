@@ -33,4 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
 
     }
+
+    public void testGlobal(){
+        ((Budget)this.getApplication()).getCollege();
+
+    }
 }
