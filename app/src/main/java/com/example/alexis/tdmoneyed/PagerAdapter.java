@@ -22,17 +22,19 @@ public class PagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return CategoryCollege.newInstance();
             case 1:
-                return CategoryFood.newInstance(2);
+                return CategoryFood.newInstance();
             case 2:
-                return CategoryTravel.newInstance(3);
+                return CategoryTravel.newInstance();
             case 3:
-                return CatDebtActivity.newInstance(4);
+                return CategoryDebt.newInstance();
             case 4:
-                return CategoryEntertainment.newInstance(5);
+                return CategoryEntertainment.newInstance();
             case 5:
-                return CategoryPets.newInstance(6);
+                return CategoryPets.newInstance();
             case 6:
-                return CategoryPersonal.newInstance(7);
+                return CategoryPersonal.newInstance();
+            case 7:
+                return CategoryIncome.newInstance();
             default:
                 return null;
         }
@@ -41,7 +43,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 7;
+        return 8;
     }
 
     @Override
@@ -61,6 +63,8 @@ public class PagerAdapter extends FragmentPagerAdapter {
                 return "Pets";
             case 6:
                 return "Personal";
+            case 7:
+                return "Income";
         }
         return null;
     }

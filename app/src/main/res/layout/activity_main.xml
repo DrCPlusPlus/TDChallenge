@@ -20,8 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-
-
     <RelativeLayout
         android:id="@+id/inner_layout"
         android:layout_width="match_parent"
@@ -36,21 +34,94 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
+            android:layout_marginBottom="0dp"
             android:textSize="20dp"
             android:textColor="#184F34"
-            android:text="Title" />
+            android:text="Home" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_below="@+id/title"
+            android:id="@+id/home_summary">
+            <TableRow
+                android:id="@+id/table_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
+                <TextView
+                    android:id="@+id/value0"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left" />
+                <TextView
+                    android:id="@+id/value1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left" />
+                <TextView
+                    android:id="@+id/value2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left" />
+            </TableRow>
+        </TableLayout>
 
         <Button
-            android:text="Build Budget"
+            android:text="Manage Budget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="78dp"
-            android:id="@+id/button"
+            android:layout_below="@+id/home_summary"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="26dp"
+            android:paddingRight="28dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="13dp"
+            android:textColor="#184F34"
+            android:textAllCaps="false"
+            android:textSize="19dp"
+            android:gravity="center_vertical|left"
+            android:drawableRight="@drawable/ic_settings_30dp"
+            android:background="@drawable/button_normal"
+            android:id="@+id/buildBtn"
             android:onClick="onClickBuild" />
 
+        <Button
+            android:text="Budget Summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buildBtn"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="26dp"
+            android:paddingRight="28dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="13dp"
+            android:textColor="#184F34"
+            android:textAllCaps="false"
+            android:textSize="19dp"
+            android:gravity="center_vertical|left"
+            android:drawableRight="@drawable/ic_folder_35dp"
+            android:background="@drawable/button_normal"
+            android:id="@+id/summaryBtn"
+            android:onClick="onClickSummary" />
 
+        <Button
+            android:text="Share Budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/summaryBtn"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="26dp"
+            android:paddingRight="28dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="13dp"
+            android:textColor="#184F34"
+            android:textAllCaps="false"
+            android:textSize="19dp"
+            android:gravity="center_vertical|left"
+            android:drawableRight="@drawable/ic_input_35dp"
+            android:background="@drawable/button_normal"
+            android:id="@+id/shareBtn"
+            android:onClick="onClickShare" />
     </RelativeLayout>
 </FrameLayout>

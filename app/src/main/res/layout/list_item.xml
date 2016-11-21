@@ -4,7 +4,21 @@
     android:id="@+id/list_item_relativelayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:layout_marginBottom="5dp"
+    >
+
+    <ImageView
+        android:id="@+id/toggle_money"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="fav"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical"
+        android:layout_marginTop="18dp"
+        app:srcCompat="@drawable/ic_money_grey"/>
+
     <TextView
         android:id="@+id/list_item"
         android:layout_width="wrap_content"
@@ -12,18 +26,18 @@
         android:textColor="#1F1F1F"
         android:textSize="18dp"
         android:typeface="sans"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/toggle_money"
         android:gravity="center_vertical"/>
-    <ImageView
-        android:id="@+id/toggle_money"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:contentDescription="fav"
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
-        android:layout_marginRight="18dp"
-        android:layout_marginTop="18dp"
-        app:srcCompat="@drawable/ic_money_grey"/>
+        android:gravity="center_vertical|right"
+        android:inputType="numberDecimal"
+        android:id="@+id/item_edit"/>
 </RelativeLayout>
 
 <!--    android:background="@drawable/ic_money_grey"-->

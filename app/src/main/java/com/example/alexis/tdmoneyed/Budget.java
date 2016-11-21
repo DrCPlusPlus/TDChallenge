@@ -1,20 +1,19 @@
 package com.example.alexis.tdmoneyed;
 
-
 import android.app.Application;
-
 import java.io.Serializable;
-import java.util.List;
+import java.util.ArrayList;
 
-public class Budget extends Application implements Serializable {
+public class Budget implements Serializable {
 
-    private List<ListItem> college;
-    private List<ListItem> food;
-    private List<ListItem> transport;
-    private List<ListItem> debt;
-    private List<ListItem> entertain;
-    private List<ListItem> pets;
-    private List<ListItem> personal;
+    private ArrayList<ListItem> college;
+    private ArrayList<ListItem> food;
+    private ArrayList<ListItem> transport;
+    private ArrayList<ListItem> debt;
+    private ArrayList<ListItem> entertain;
+    private ArrayList<ListItem> pets;
+    private ArrayList<ListItem> personal;
+    private ArrayList<ListItem> totals;
 
     private double budgeted;
     private double spent;
@@ -22,80 +21,65 @@ public class Budget extends Application implements Serializable {
     private double saveGoal;
     private double saveActual;
 
-
-    public List<ListItem> getCollege(){
+    public ArrayList<ListItem> getCollege(){
         return college;
     }
-    public List<ListItem> getFood(){
+    public ArrayList<ListItem> getFood(){
         return food;
     }
-    public List<ListItem> getTransport(){
+    public ArrayList<ListItem> getTransport(){
         return transport;
     }
-    public List<ListItem> getDebt(){
+    public ArrayList<ListItem> getDebt(){
         return debt;
     }
-    public List<ListItem> getEntertain(){
+    public ArrayList<ListItem> getEntertain(){
         return entertain;
     }
-    public List<ListItem> getPets(){
+    public ArrayList<ListItem> getPets(){
         return pets;
     }
-    public List<ListItem> getPersonal(){
+    public ArrayList<ListItem> getPersonal(){
         return personal;
     }
-
-    public double getBudgeted(){
-        return budgeted;
-    }
-    public double getSpent(){
-        return spent;
-    }
-    public double getIncome(){
-        return income;
-    }
-    public double getSaveGoal(){
-        return saveGoal;
-    }
-    public double getSaveActual(){
-        return saveActual;
+    public ArrayList<ListItem> getTotals(){
+        return totals;
     }
 
-    public void setCollege(List<ListItem> value){
+    public double getBudgeted(){ return budgeted; }
+    public double getSpent(){ return spent; }
+    public double getIncome(){ return income;  }
+    public double getSaveGoal(){ return saveGoal; }
+    public double getSaveActual(){ return saveActual; }
+
+    public void setCollege(ArrayList<ListItem> value){
         this.college = value;
     }
-    public void setFood(List<ListItem> value){
+    public void setFood(ArrayList<ListItem> value){
         this.food = value;
     }
-    public void setTransport(List<ListItem> value){
+    public void setTransport(ArrayList<ListItem> value){
         this.transport = value;
     }
-    public void setDebt(List<ListItem> value){
+    public void setDebt(ArrayList<ListItem> value){
         this.debt = value;
     }
-    public void setEntertain(List<ListItem> value){
+    public void setEntertain(ArrayList<ListItem> value){
         this.entertain = value;
     }
-    public void setPets(List<ListItem> value){
+    public void setPets(ArrayList<ListItem> value){
         this.pets = value;
     }
-    public void setPersonal(List<ListItem> value){
+    public void setPersonal(ArrayList<ListItem> value){
         this.personal = value;
     }
+    public void setTotals(ArrayList<ListItem> value){
+        this.totals = value;
+    }
 
-    public void setBudgeted(Double value){
-        this.budgeted = value;
-    }
-    public void setSpent(Double value){
-        this.spent = value;
-    }
-    public void setIncome(Double value){
-        this.income = value;
-    }
-    public void setSaveGoal(Double value){
-        this.saveGoal = value;
-    }
-    public void setSaveActual(Double value){
-        this.saveActual = value;
-    }
+    public void setBudgeted(Double value){ this.budgeted = value; }
+    public void setSpent(Double value){ this.spent = value; }
+    public void setIncome(Double value){ this.income = value; }
+    public void setSaveGoal(Double value){ this.saveGoal = value; }
+    public void setSaveActual(Double value){ this.saveActual = value; }
 }
