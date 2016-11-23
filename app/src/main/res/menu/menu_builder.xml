@@ -8,6 +8,21 @@
         android:title="@string/action_home"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_builder"
+        android:orderInCategory="100"
+        android:title="@string/action_builder"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_summary"
+        android:orderInCategory="100"
+        android:title="@string/action_summary"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_help"
         android:orderInCategory="100"
         android:title="@string/action_help"

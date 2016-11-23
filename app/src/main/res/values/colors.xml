@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="TdDarkGreen">#184F34</color>
+    <color name="TDLightGreen">#01A221</color>
+    <color name="content">#363636</color>
+    <color name="tableRow">#F1F0F5</color>
+    <color name="tableRowDark">#A0A1A6</color>
 </resources>
+
+<!---->

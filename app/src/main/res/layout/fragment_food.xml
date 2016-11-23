@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="15dp"
-    tools:context="com.example.alexis.tdmoneyed.BuilderActivity$CategoryCollege">
+    tools:context="com.example.alexis.tdmoneyed.BuilderActivity$CategoryFood">
 
     <ListView
-        android:id="@+id/collegeListView"
+        android:id="@+id/foodListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 </RelativeLayout>

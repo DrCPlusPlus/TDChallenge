@@ -2,6 +2,9 @@
     <string name="app_name">TDMoneyEd</string>
     <string name="title_activity_builder">BuilderActivity</string>
     <string name="action_home">Home</string>
+    <string name="action_builder">Builder</string>
+    <string name="action_summary">Summary</string>
+    <string name="action_settings">Settings</string>
     <string name="action_help">Help</string>
     <string name="section_format">Category: %1$d</string>
 
@@ -16,7 +19,8 @@
     <!-- Category Food -->
     <string-array name="category_food">
         <item>Groceries</item>
-        <item>Snacks/Coffee</item>
+        <item>Coffee</item>
+        <item>Snacks</item>
         <item>Dining Out</item>
     </string-array>
 
@@ -24,8 +28,9 @@
     <string-array name="category_transportation">
         <item>Car Payments</item>
         <item>Gas/Fuel</item>
-        <item>Repairs/Maintenance</item>
-        <item>Other Transportation</item>
+        <item>Maintenance</item>
+        <item>Insurance</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Debt -->
@@ -38,29 +43,41 @@
     <!-- Category Entertainment -->
     <string-array name="category_entertainment">
         <item>Cable/Internet</item>
-        <item>Computer/Accessories</item>
-        <item>Movies/Concerts/Sprots</item>
+        <item>Computer</item>
+        <item>Movies/Events</item>
         <item>Music/Videos</item>
         <item>Hobbies</item>
         <item>Cell Phone</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Pets -->
-    <string-array name="category_Pets">
+    <string-array name="category_pets">
         <item>Food</item>
         <item>Grooming</item>
-        <item>Vet Appointments</item>
+        <item>Veterinarian</item>
     </string-array>
 
     <!-- Category Personal -->
     <string-array name="category_personal">
-        <item>Gifts</item>
-        <item>Clothing/Shoes</item>
+        <item>Clothing</item>
+        <item>Shoes</item>
         <item>Accessories</item>
         <item>Laundry</item>
-        <item>Personal Grooming</item>
-        <item>Gym Membership</item>
-        <item>Household Needs</item>
+        <item>Grooming</item>
+        <item>Hygiene</item>
+        <item>Gym</item>
+        <item>Household</item>
+        <item>Gifts</item>
         <item>Miscellaneous</item>
     </string-array>
+
+    <!-- Category Totals -->
+    <string-array name="category_totals">
+        <item>Work</item>
+        <item>Loans</item>
+        <item>Other</item>
+    </string-array>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

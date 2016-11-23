@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -15,32 +14,32 @@ import android.widget.ListView;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
-
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class CategoryCollege extends Fragment implements View.OnFocusChangeListener {
+/**
+ * Created by Alexis on 11/18/2016.
+ */
 
+public class CategoryIncome extends Fragment implements View.OnFocusChangeListener {
     private ArrayList<ListItem> listItems;
     private Budget budget = BuilderActivity.getBudget();
     private String budgetFile = "budgetFile.bin";
     private Context context = App.getAppContext();
 
-    public CategoryCollege(){}
+    public CategoryIncome(){}
 
-    public static CategoryCollege newInstance() {
-        CategoryCollege fragment = new CategoryCollege();
+    public static CategoryIncome newInstance() {
+        CategoryIncome fragment = new CategoryIncome();
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        final View rootView = inflater.inflate(R.layout.fragment_college, container, false);
-        ListView lv = (ListView)rootView.findViewById(R.id.collegeListView);
+        final View rootView = inflater.inflate(R.layout.fragment_totals, container, false);
+        ListView lv = (ListView)rootView.findViewById(R.id.totalsListView);
 
         createList(); // set budget values
         ListAdapter adapter = new ListAdapter(getActivity(), listItems, this);
@@ -52,19 +51,19 @@ public class CategoryCollege extends Fragment implements View.OnFocusChangeListe
 
     public void createList() {
         listItems = new ArrayList<ListItem>();
-        ArrayList<ListItem> collegeList = budget.getCollege();
-        String[] listArray = getResources().getStringArray(R.array.category_college);
+        ArrayList<ListItem> totalsList = budget.getTotals();
+        String[] listArray = getResources().getStringArray(R.array.category_totals);
 
-        if (collegeList == null) {
+        if (totalsList == null) {
             for (int idx = 0; idx < listArray.length; ++idx) {
                 ListItem item = new ListItem(listArray[idx], false, 0.00);
                 listItems.add(item);
             }
         } else {
             for (int idx = 0; idx < listArray.length; ++idx) {
-                String itemName = collegeList.get(idx).getItem_name();
-                Boolean checked = collegeList.get(idx).getChecked_Icon();
-                Double amount = collegeList.get(idx).getAmount();
+                String itemName = totalsList.get(idx).getItem_name();
+                Boolean checked = totalsList.get(idx).getChecked_Icon();
+                Double amount = totalsList.get(idx).getAmount();
                 ListItem item = new ListItem(itemName, checked, amount);
                 listItems.add(item);
             }
@@ -83,7 +82,6 @@ public class CategoryCollege extends Fragment implements View.OnFocusChangeListe
             ListItem li = listItems.get(container.item_id);
             li.setAmount(Double.parseDouble(Caption.getText().toString()));
 
-
             Boolean liChecked = li.getChecked_Icon();
             if (!liChecked) {
                 li.setChecked_icon(true);
@@ -93,7 +91,12 @@ public class CategoryCollege extends Fragment implements View.OnFocusChangeListe
                 img.setImageResource(R.drawable.ic_money_grey);
             }
         }
-        budget.setCollege(listItems);
+        budget.setTotals(listItems);
+        Double sumIncome = 0.0;
+        for(int idx = 0; idx < listItems.size(); ++idx){
+            sumIncome += listItems.get(idx).getAmount();
+        }
+        budget.setIncome(sumIncome);
     }
 
     class ViewHolder {
