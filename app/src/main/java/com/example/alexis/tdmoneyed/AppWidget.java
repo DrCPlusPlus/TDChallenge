@@ -58,10 +58,10 @@ public class AppWidget extends AppWidgetProvider implements Serializable{
         //final int N = appWidgetIds.length;
 
         if(budget != null) {
-            budgeted = Double.toString(budget.getBudgeted());
-            saveGoal = Double.toString(budget.getSaveGoal());
-            spent = Double.toString(budget.getSpent());
-            saveActual = Double.toString(budget.getSaveActual());
+            budgeted = Utils.getDoubleAsCurrency(budget.getBudgeted());
+            saveGoal = Utils.getDoubleAsCurrency(budget.getSaveGoal());
+            spent = Utils.getDoubleAsCurrency(budget.getSpent());
+            saveActual = Utils.getDoubleAsCurrency(budget.getSaveActual());
         }
 
         // Perform this loop procedure for each App Widget that belongs to this provider

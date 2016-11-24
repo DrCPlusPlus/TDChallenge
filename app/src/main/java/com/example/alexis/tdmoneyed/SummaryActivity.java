@@ -81,7 +81,6 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
             budget.setBudgeted(amountBudgeted);
             budget.setSaveGoal(savingsGoal);
         }
-
     }
 
     public void createTable(String header, ArrayList<ListItem> list){
@@ -118,7 +117,7 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
                     label.setPadding(60, 10, 10, 10);
                     label.setTextColor(ContextCompat.getColor(context, R.color.content));
                     value = new TextView(this);
-                    value.setText(list.get(idx).getAmount().toString());
+                    value.setText(Utils.getDoubleAsCurrency(list.get(idx).getAmount()));
                     amountBudgeted =(amountBudgeted + list.get(idx).getAmount());
                     value.setTextSize(17);
                     value.setPadding(60, 10, 10, 10);
@@ -157,7 +156,7 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
         label.setPadding(60, 10, 10, 10);
         label.setTextColor(ContextCompat.getColor(context, R.color.content));
         value = new TextView(this);
-        value.setText(Double.toString(budget.getIncome()));
+        value.setText(Utils.getDoubleAsCurrency(budget.getIncome()));
         value.setTextSize(17);
         value.setPadding(60, 10, 10, 10);
         value.setTextColor(ContextCompat.getColor(context, R.color.content));
@@ -172,7 +171,7 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
         label.setPadding(60, 10, 10, 10);
         label.setTextColor(ContextCompat.getColor(context, R.color.content));
         value = new TextView(this);
-        value.setText(amountBudgeted.toString());
+        value.setText(Utils.getDoubleAsCurrency(amountBudgeted));
         value.setTextSize(17);
         value.setPadding(60, 10, 10, 10);
         value.setTextColor(ContextCompat.getColor(context, R.color.content));
@@ -189,7 +188,7 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
         value = new TextView(this);
         Double income = budget.getIncome();
         savingsGoal = (income - amountBudgeted);
-        value.setText(savingsGoal.toString());
+        value.setText(Utils.getDoubleAsCurrency(savingsGoal));
         value.setTextSize(17);
         value.setPadding(60, 10, 10, 10);
         value.setTextColor(ContextCompat.getColor(context, R.color.content));
