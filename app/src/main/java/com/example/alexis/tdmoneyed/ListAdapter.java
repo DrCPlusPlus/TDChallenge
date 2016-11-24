@@ -73,10 +73,10 @@ public class ListAdapter extends BaseAdapter {
 
         holder.caption.setTag(holder);
         if(item_pos.getAmount() == 0.00) {
-            holder.caption.setText("0.00");
+            holder.caption.setText(Utils.getDoubleAsCurrency(0.0));
             holder.toggle_money.setImageResource(R.drawable.ic_money_grey);
         } else {
-            holder.caption.setText(item_pos.getAmount().toString());
+            holder.caption.setText(Utils.getDoubleAsCurrency(item_pos.getAmount()));
             holder.toggle_money.setImageResource(R.drawable.ic_money_green);
         }
 

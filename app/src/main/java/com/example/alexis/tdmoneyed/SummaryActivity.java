@@ -85,7 +85,12 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
     }
 
     public void createTable(String header, ArrayList<ListItem> list){
-        if(list != null){
+        if(list != null && list.size() > 0){
+			double listAmount = 0.0;
+            for(ListItem li: list)
+				listAmount += li.getAmount();
+			if (listAmount < 0.001)		// if the list contains no items with a value then don't display it in the summary
+				return;
             trHeader = new TableRow(this);
             TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams
                     (TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);

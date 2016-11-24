@@ -16,11 +16,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryPersonal extends Fragment implements View.OnFocusChangeListener {
-
-    private ArrayList<ListItem> listItems;
-    private Budget budget = BuilderActivity.getBudget();
-    ListView lv;
+public class CategoryPersonal extends CategoryBase {
 
     public CategoryPersonal(){}
 
@@ -35,63 +31,12 @@ public class CategoryPersonal extends Fragment implements View.OnFocusChangeList
 
         final View rootView = inflater.inflate(R.layout.fragment_personal, container, false);
         lv = (ListView)rootView.findViewById(R.id.personalListView);
-
-
-        createList(); // set budget values
-        ListAdapter adapter = new ListAdapter(getActivity(), listItems, this);
-        lv.setAdapter(adapter);
-        lv.setItemsCanFocus(true);
-
+        createList(R.array.category_personal, budget.getPersonal()); // set budget values
         return rootView;
     }
 
-    public void createList() {
-        listItems = new ArrayList<ListItem>();
-        ArrayList<ListItem> personalList = budget.getPersonal();
-        String[] listArray = getResources().getStringArray(R.array.category_personal);
-
-        if (personalList == null) {
-            for (int idx = 0; idx < listArray.length; ++idx) {
-                ListItem item = new ListItem(listArray[idx], false, 0.00);
-                listItems.add(item);
-            }
-        } else {
-            for (int idx = 0; idx < listArray.length; ++idx) {
-                String itemName = personalList.get(idx).getItem_name();
-                Boolean checked = personalList.get(idx).getChecked_Icon();
-                Double amount = personalList.get(idx).getAmount();
-                ListItem item = new ListItem(itemName, checked, amount);
-                listItems.add(item);
-            }
-        }
+    @Override
+    public void setList(ArrayList<ListItem> list) {
+        budget.setPersonal(list);
     }
-
-
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (!hasFocus) {
-            //final int position = v.getId();
-
-            final EditText Caption = (EditText) v;
-            ListAdapter.ViewContainer container = (ListAdapter.ViewContainer)Caption.getTag();
-            ImageView img = container.toggle_money;
-
-            ListItem li = listItems.get(container.item_id);
-            li.setAmount(Double.parseDouble(Caption.getText().toString()));
-
-            Boolean liChecked = li.getChecked_Icon();
-            if (!liChecked) {
-                li.setChecked_icon(true);
-                img.setImageResource(R.drawable.ic_money_green);
-            } else {
-                li.setChecked_icon(false);
-                img.setImageResource(R.drawable.ic_money_grey);
-            }
-        }
-        budget.setPersonal(listItems);
-    }
-
-    class ViewHolder {
-        EditText caption;
-    }
-
 }
