@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_help"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.alexis.tdmoneyed.HelpActivity">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
@@ -33,24 +34,12 @@
             android:text="Here to Help"
             android:background="@color/TDLightGreen"/>
     </android.support.design.widget.AppBarLayout>
-    <ScrollView
+
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar">
-        <RelativeLayout
-            android:id="@+id/inner_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingBottom="16dp"
-            android:paddingTop="16dp"
-            android:paddingRight="16dp">
+        android:layout_below= "@+id/appbar"
+        android:id="@+id/WebView"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Step 1."/>
 
-        </RelativeLayout>
-    </ScrollView>
-</FrameLayout>
+</RelativeLayout>

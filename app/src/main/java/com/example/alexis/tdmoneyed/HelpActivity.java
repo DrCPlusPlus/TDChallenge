@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,6 +30,8 @@ public class HelpActivity extends AppCompatActivity {
         setSupportActionBar(my_toolbar);
         getSupportActionBar().setTitle("Financial Education");
         getSupportActionBar().setIcon(R.drawable.td_shield);
+
+		((WebView)findViewById(R.id.WebView)).loadUrl("file:///android_asset/help.html");
     }
 
     @Override
