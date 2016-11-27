@@ -200,7 +200,11 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(i);
             return true;
         }
-
+        if (id == R.id.action_tutorial) {
+            i = new Intent(this, TDMoneyEdIntro.class);
+            startActivity(i);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

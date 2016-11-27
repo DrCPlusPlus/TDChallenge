@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.alexis.tdmoneyed">
+          package="com.example.alexis.tdmoneyed">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-sdk android:minSdkVersion="14" />
-    <uses-feature android:name="android.hardware.nfc" />
+    <uses-sdk android:minSdkVersion="14"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.NFC"/>
+
+    <uses-feature android:name="android.hardware.nfc"/>
+
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -16,34 +21,38 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="application/com.example.alexis.tdmoneyed" />
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:mimeType="application/com.example.alexis.tdmoneyed"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".BuilderActivity"
             android:label="@string/title_activity_builder"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".HelpActivity" />
-        <activity android:name=".SummaryActivity" />
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".HelpActivity"/>
+        <activity android:name=".SummaryActivity"/>
 
         <receiver android:name=".AppWidget">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_info" />
+                android:resource="@xml/app_widget_info"/>
         </receiver>
 
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SettingsActivity"/>
+        <activity android:name=".TDMoneyEdIntro">
+        </activity>
     </application>
 
 </manifest>

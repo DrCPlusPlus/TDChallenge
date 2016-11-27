@@ -2,6 +2,7 @@ package com.example.alexis.tdmoneyed;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
@@ -31,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
     private TextView income, budgeted, saveGoal, spent, saveActual;
 	private Button btnShareBudget;
 	private NfcAdapter mNfcAdapter;
-	boolean beamEnabled;
+	private boolean beamEnabled;
+	public static boolean introShown = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,14 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
             Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
 			btnShareBudget.setEnabled(false);
         }
+
+		if (!introShown) {
+			SharedPreferences settings = getSharedPreferences("tdmoneystate", Context.MODE_PRIVATE);
+			if (!settings.getBoolean("introDisplayed", false)) {
+				Intent i = new Intent(this, TDMoneyEdIntro.class);
+				startActivity(i);
+			}
+		}
     }
 
 	private void setHomeScreenInfo(){
@@ -109,8 +119,6 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 			mNfcAdapter.setNdefPushMessageCallback(null, this);
 			Toast.makeText(this, "Sharing disabled!", Toast.LENGTH_LONG).show();
 		}
-
-
     }
 
     @Override
@@ -154,7 +162,11 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
             startActivity(i);
             return true;
         }
-
+		if (id == R.id.action_tutorial) {
+			i = new Intent(this, TDMoneyEdIntro.class);
+			startActivity(i);
+			return true;
+		}
         return super.onOptionsItemSelected(item);
     }
 
