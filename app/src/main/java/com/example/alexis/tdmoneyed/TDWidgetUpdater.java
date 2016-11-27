@@ -5,12 +5,14 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TimerTask;
 
@@ -27,14 +29,15 @@ public class TDWidgetUpdater extends TimerTask {
 	private AppWidgetManager appWidgetManager;
 	private ComponentName thisWidget;
 	private Context context;
-
+	private int[] appWidgetIds;
 	private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
 
-	public TDWidgetUpdater(Context context, AppWidgetManager appWidgetManager){
+	public TDWidgetUpdater(Context context, AppWidgetManager appWidgetManager, int[] ids){
 		this.appWidgetManager = appWidgetManager;
 		remoteViews = new RemoteViews(context.getPackageName(), R.layout.app_widget);
 		thisWidget = new ComponentName(context, AppWidget.class);
 		this.context = context;
+		this.appWidgetIds = ids;
 	}
 
 	private void loadBudgetFromFile(){
@@ -55,6 +58,7 @@ public class TDWidgetUpdater extends TimerTask {
 
 	@Override
 	public void run(){
+		Log.e("Run", "Triggered! " + Calendar.getInstance().getTime().toString());
 		//contact server
 		//get transactions
 		//get budget from persisted memory
@@ -85,7 +89,8 @@ public class TDWidgetUpdater extends TimerTask {
 		remoteViews.setTextViewText(R.id.actual_savings, now);
 		remoteViews.setOnClickPendingIntent(R.id.widget, pendingIntent);
 		// Tell AppWidgetManager to update current app widget
-		appWidgetManager.updateAppWidget(thisWidget, remoteViews);
+		if (appWidgetManager != null)
+			appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
 
 	}
 }

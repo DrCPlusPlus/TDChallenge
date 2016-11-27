@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by Jon on 2016-11-23.
+ * Created on 2016-11-23.
  */
 
 public abstract class CategoryBase extends Fragment implements View.OnFocusChangeListener {
