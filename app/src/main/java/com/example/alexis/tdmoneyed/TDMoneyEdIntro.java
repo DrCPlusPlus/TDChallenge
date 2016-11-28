@@ -30,8 +30,12 @@ public class TDMoneyEdIntro extends AppIntro {
 		// Instead of fragments, you can also use our default slide
 		// Just set a title, description, background and image. AppIntro will do the rest
 
-		addSlide(AppIntroFragment.newInstance("TD Money Ed", "Budgeting", R.drawable.td_shield, ContextCompat.getColor(this, R.color.TdDarkGreen)));
-		addSlide(AppIntroFragment.newInstance("TD Money Ed", "Budgeting", R.drawable.td_shield, ContextCompat.getColor(this, R.color.TdDarkGreen)));
+		addSlide(AppIntroFragment.newInstance("TD Money Ed", "Get started by clicking the Manage Budget button on the home screen.", R.drawable.slide_main, ContextCompat.getColor(this, R.color.TDLightGreen)));
+		addSlide(AppIntroFragment.newInstance("Create your budget", "Scroll through the categories and enter values that apply to your budget. Submit your input by clicking the folder button at the bottom of the screen.", R.drawable.slide_budget, ContextCompat.getColor(this, R.color.TDLightGreen)));
+		addSlide(AppIntroFragment.newInstance("Settings", "Enter your information to receive a detailed text message if you go out of budget on any of the categories.", R.drawable.slide_settings, ContextCompat.getColor(this, R.color.TDLightGreen)));
+		addSlide(AppIntroFragment.newInstance("Share your budget", "Insure your phones NFC and Beam capabilities are active. Click the Share Budget button on the home screen on two phones and align them back to back to transfer your budget data from one phone to the other.", R.drawable.slide_beam, ContextCompat.getColor(this, R.color.TDLightGreen)));
+		addSlide(AppIntroFragment.newInstance("Widget", "Drag the widget to your home screen for quick review of your budgets totals. If the widgets header turns red click on the widget to launch the app and find out which category was over spent on.", R.drawable.slide_widget, ContextCompat.getColor(this, R.color.TDLightGreen)));
+		addSlide(AppIntroFragment.newInstance("Main Menu", "Relocate yourself within the app any time by accessing the apps main menu within the toolbar.", R.drawable.slide_menu, ContextCompat.getColor(this, R.color.TDLightGreen)));
 		// OPTIONAL METHODS
 
 		// SHOW or HIDE the statusbar
