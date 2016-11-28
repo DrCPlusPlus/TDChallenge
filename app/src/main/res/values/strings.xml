@@ -15,6 +15,10 @@
         <item>Tuition</item>
         <item>Books</item>
         <item>Class Fees</item>
+        <item>Lab Fees</item>
+        <item>Co-op Fees</item>
+        <item>Locker</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Food -->
@@ -23,6 +27,7 @@
         <item>Coffee</item>
         <item>Snacks</item>
         <item>Dining Out</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Transportation -->
@@ -30,7 +35,9 @@
         <item>Car Payments</item>
         <item>Gas/Fuel</item>
         <item>Maintenance</item>
+        <item>Repairs</item>
         <item>Insurance</item>
+        <item>Parking</item>
         <item>Other</item>
     </string-array>
 
@@ -38,7 +45,9 @@
     <string-array name="category_debt">
         <item>Credit Cards</item>
         <item>Student Loans</item>
-        <item>Other Loans</item>
+        <item>Line of Credit</item>
+        <item>Cash Advance</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Entertainment -->
@@ -55,8 +64,13 @@
     <!-- Category Pets -->
     <string-array name="category_pets">
         <item>Food</item>
+        <item>Treats</item>
+        <item>Supplies</item>
         <item>Grooming</item>
+        <item>Training</item>
         <item>Veterinarian</item>
+        <item>Medication</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Personal -->
@@ -71,12 +85,16 @@
         <item>Household</item>
         <item>Gifts</item>
         <item>Miscellaneous</item>
+        <item>Other</item>
     </string-array>
 
     <!-- Category Totals -->
     <string-array name="category_totals">
         <item>Work</item>
         <item>Loans</item>
+        <item>RSPs</item>
+        <item>Bursary</item>
+        <item>Family</item>
         <item>Other</item>
     </string-array>
     <string name="appwidget_text">EXAMPLE</string>

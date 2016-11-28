@@ -1,8 +1,10 @@
 package com.example.alexis.tdmoneyed;
 
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -49,6 +51,27 @@ public abstract class CategoryBase extends Fragment implements View.OnFocusChang
 		lv.setAdapter(adapter);
 		lv.setItemsCanFocus(true);
 		lv.setFocusable(false);
+
+
+
+		final FloatingActionButton fab = (FloatingActionButton)((BuilderActivity)getActivity()).findViewById(R.id.fab);
+		lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) { }
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+				int lastItem = firstVisibleItem + visibleItemCount;
+				if (firstVisibleItem == 0) {
+					fab.setVisibility(View.VISIBLE);
+				}else if (lastItem == totalItemCount) {
+					fab.setVisibility(View.INVISIBLE);
+				}else {
+					fab.setVisibility(View.VISIBLE);
+				}
+			}
+		});
 	}
 
 	public void onFocusChange(View v, boolean hasFocus) {
