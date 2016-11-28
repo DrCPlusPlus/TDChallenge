@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +19,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ColorTemplate;
+//import com.github.mikephil.charting.charts.BarChart;
+//import com.github.mikephil.charting.data.BarData;
+//import com.github.mikephil.charting.data.BarDataSet;
+//import com.github.mikephil.charting.data.BarEntry;
+//import com.github.mikephil.charting.data.Entry;
+//import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -59,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 
 		btnShareBudget = (Button)findViewById(R.id.shareBtn);
 		beamEnabled = false;
+		budget = new Budget();
+
         try {
             ObjectInputStream getBudget = new ObjectInputStream(openFileInput(budgetFile));
             budget = (Budget)getBudget.readObject();
-            if(budget == null)
-                budget = new Budget();
             getBudget.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
         saveGoal = (TextView)findViewById(R.id.savings_goal);
         spent = (TextView)findViewById(R.id.spent);
         saveActual = (TextView)findViewById(R.id.actual_savings);
+		if (budget.isOverBudget())
+			Log.e("main", "overbudget");
 		setHomeScreenInfo();
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);

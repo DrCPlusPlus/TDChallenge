@@ -32,7 +32,7 @@ public class TDWidgetUpdater extends TimerTask{
 	private Context context;
 
 	private int[] appWidgetIds;
-	private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
+	//private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
 
 	public TDWidgetUpdater(Context context, AppWidgetManager appWidgetManager, int[] ids){
 		this.appWidgetManager = appWidgetManager;
@@ -86,7 +86,7 @@ public class TDWidgetUpdater extends TimerTask{
 		}
 
 
-		String now = formatter.format(new Date());
+//		String now = formatter.format(new Date());
 		// Launch summary activity on click
 		Intent intent = new Intent(context, SummaryActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -94,7 +94,7 @@ public class TDWidgetUpdater extends TimerTask{
 		remoteViews.setTextViewText(R.id.budgeted, budgeted);
 		remoteViews.setTextViewText(R.id.savings_goal, saveGoal);
 		remoteViews.setTextViewText(R.id.spent, spent);
-		remoteViews.setTextViewText(R.id.actual_savings, now);
+		remoteViews.setTextViewText(R.id.actual_savings, saveActual);
 		remoteViews.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
 
