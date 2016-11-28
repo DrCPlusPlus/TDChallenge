@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
     private Budget budget;
     private String budgetFile = "budgetFile.bin";
     private Context context = App.getAppContext();
-    private TextView income, budgeted, saveGoal, spent, saveActual;
+    //private TextView income, budgeted, saveGoal, spent, saveActual;
 	private Button btnShareBudget;
 	private NfcAdapter mNfcAdapter;
 	private boolean beamEnabled;
