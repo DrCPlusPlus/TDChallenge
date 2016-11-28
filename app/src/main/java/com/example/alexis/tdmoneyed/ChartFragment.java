@@ -7,6 +7,17 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 
 /**
@@ -20,6 +31,8 @@ import android.view.ViewGroup;
 public class ChartFragment extends Fragment {
 
   //  private OnFragmentInteractionListener mListener;
+    private Context context = App.getAppContext();
+    protected Budget budget = BuilderActivity.getBudget();
 
     public ChartFragment() {
         // Required empty public constructor
@@ -44,7 +57,40 @@ public class ChartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chart, container, false);
+        View v = inflater.inflate(R.layout.fragment_chart, container, false);
+        //RelativeLayout rl = (RelativeLayout)v.findViewById(R.id.inner_layout);
+        FrameLayout rl = (FrameLayout)v.findViewById(R.id.frag_layout);
+        ImageView imgChart = (ImageView)v.findViewById(R.id.chart);
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        if(budget != null) {
+            // set bar chart
+            float budgetChart = (float) budget.getBudgeted();
+            float saveGoalChart = (float) budget.getSaveGoal();
+            float spentChart = (float) budget.getSpent();
+            float saveActualChart = (float) budget.getSaveActual();
+            entries.add(new BarEntry(budgetChart, 0));
+            entries.add(new BarEntry(saveGoalChart, 1));
+            entries.add(new BarEntry(spentChart, 2));
+            entries.add(new BarEntry(saveActualChart, 3));
+        }
+        BarDataSet dataset = new BarDataSet(entries, "Budget Totals");
+        // charts x-axis labels
+        ArrayList<String> labels = new ArrayList<String>();
+        labels.add("Budget");
+        labels.add("Goal");
+        labels.add("Spent");
+        labels.add("Saved");
+        // create chart
+        BarChart chart = new BarChart(context);
+        float x = 5;
+        //((MainActivity)context).setContentView(chart);
+        rl.addView(chart);
+        BarData data = new BarData(labels, dataset);
+        chart.setData(data);
+        chart.setDescription("Budgets Totals");
+        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
             ex.printStackTrace();
         }
 
-        income = (TextView)findViewById(R.id.income);
-        budgeted = (TextView)findViewById(R.id.budgeted);
-        saveGoal = (TextView)findViewById(R.id.savings_goal);
-        spent = (TextView)findViewById(R.id.spent);
-        saveActual = (TextView)findViewById(R.id.actual_savings);
-		setHomeScreenInfo();
+//        income = (TextView)findViewById(R.id.income);
+//        budgeted = (TextView)findViewById(R.id.budgeted);
+//        saveGoal = (TextView)findViewById(R.id.savings_goal);
+//        spent = (TextView)findViewById(R.id.spent);
+//        saveActual = (TextView)findViewById(R.id.actual_savings);
+//		setHomeScreenInfo();
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null) {
@@ -125,19 +125,19 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 	public void setBudget(Budget b)
 	{
 		this.budget = b;
-		setHomeScreenInfo();
+		//setHomeScreenInfo();
 	}
-	private void setHomeScreenInfo(){
-		if(budget != null) {
-
-			income.setText(Utils.getDoubleAsCurrency(budget.getIncome()));
-			budgeted.setText(Utils.getDoubleAsCurrency(budget.getBudgeted()));
-			saveGoal.setText(Utils.getDoubleAsCurrency(budget.getSaveGoal()));
-			spent.setText(Utils.getDoubleAsCurrency(budget.getSpent()));
-			saveActual.setText(Utils.getDoubleAsCurrency(budget.getSaveActual()));
-
-		}
-	}
+//	private void setHomeScreenInfo(){
+//		if(budget != null) {
+//
+//			income.setText(Utils.getDoubleAsCurrency(budget.getIncome()));
+//			budgeted.setText(Utils.getDoubleAsCurrency(budget.getBudgeted()));
+//			saveGoal.setText(Utils.getDoubleAsCurrency(budget.getSaveGoal()));
+//			spent.setText(Utils.getDoubleAsCurrency(budget.getSpent()));
+//			saveActual.setText(Utils.getDoubleAsCurrency(budget.getSaveActual()));
+//
+//		}
+//	}
 
     public void onClickBuild(View view){
         Intent ib = new Intent(this, BuilderActivity.class);
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 		budget = (Budget)(Utils.fromByteArray(msg.getRecords()[0].getPayload()));
 
 		saveBudget();
-		setHomeScreenInfo();
+		//setHomeScreenInfo();
     }
 	//endregion
 }
