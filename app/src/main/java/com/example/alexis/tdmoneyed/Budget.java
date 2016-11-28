@@ -14,11 +14,17 @@ public class Budget implements Serializable {
     private ArrayList<ListItem> personal;
     private ArrayList<ListItem> totals;
 
+    private ArrayList<Category> categories;
+	private ArrayList<Transaction> transactions;
+
     private double budgeted;
-    private double spent;
     private double income;
     private double saveGoal;
     private double saveActual;
+
+	public Budget(){
+		transactions = new ArrayList<>();
+	}
 
     public ArrayList<ListItem> getCollege(){
         return college;
@@ -45,8 +51,20 @@ public class Budget implements Serializable {
         return totals;
     }
 
+	public ArrayList<Category> getCategories() {return categories; }
+	public ArrayList<Transaction> getTransactions() { return transactions; }
+
+
     public double getBudgeted(){ return budgeted; }
-    public double getSpent(){ return spent; }
+
+	public double getSpent(){
+		double amountSpent = 0.0;
+		for(Transaction t : transactions)
+			amountSpent += t.getAmount();
+
+		return amountSpent;
+	}
+
     public double getIncome(){ return income;  }
     public double getSaveGoal(){ return saveGoal; }
     public double getSaveActual(){ return saveActual; }
@@ -76,9 +94,17 @@ public class Budget implements Serializable {
         this.totals = value;
     }
 
-    public void setBudgeted(Double value){ this.budgeted = value; }
-    public void setSpent(Double value){ this.spent = value; }
+	public void setCategories(ArrayList<Category> categories) {
+		this.categories = categories;
+	}
+
+
+	public void setBudgeted(Double value){ this.budgeted = value; }
     public void setIncome(Double value){ this.income = value; }
     public void setSaveGoal(Double value){ this.saveGoal = value; }
     public void setSaveActual(Double value){ this.saveActual = value; }
+
+    public void addTransaction(Transaction t){
+		this.transactions.add(t);
+	}
 }

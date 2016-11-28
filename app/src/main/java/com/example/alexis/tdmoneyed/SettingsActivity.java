@@ -38,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView label;
     private EditText input;
     private int inputId = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +50,12 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(my_toolbar);
         getSupportActionBar().setTitle("Financial Education");
         getSupportActionBar().setIcon(R.drawable.td_shield);
+		settings = new Settings();
 
-        try {
+		try {
             ObjectInputStream getSettings = new ObjectInputStream(openFileInput(settingsFile));
             settings = (Settings)getSettings.readObject();
-            if(settings == null)
-                settings = new Settings();
+
             getSettings.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();

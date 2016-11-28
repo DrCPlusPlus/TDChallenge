@@ -21,7 +21,7 @@ import java.util.TimerTask;
  * Will contact the server for updated transactions
  */
 
-public class TDWidgetUpdater extends TimerTask {
+public class TDWidgetUpdater extends TimerTask{
 	private String budgetFile = "budgetFile.bin";
 	private Budget budget;
 
@@ -29,6 +29,7 @@ public class TDWidgetUpdater extends TimerTask {
 	private AppWidgetManager appWidgetManager;
 	private ComponentName thisWidget;
 	private Context context;
+
 	private int[] appWidgetIds;
 	private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss.SSS");
 
@@ -41,11 +42,10 @@ public class TDWidgetUpdater extends TimerTask {
 	}
 
 	private void loadBudgetFromFile(){
+		budget = new Budget();
 		try {
 			ObjectInputStream getBudget = new ObjectInputStream(context.openFileInput(budgetFile));
 			budget = (Budget)getBudget.readObject();
-			if(budget == null)
-				budget = new Budget();
 			getBudget.close();
 		} catch (FileNotFoundException ex){
 			ex.printStackTrace();
@@ -64,8 +64,10 @@ public class TDWidgetUpdater extends TimerTask {
 		//get budget from persisted memory
 		loadBudgetFromFile();
 		//update budget
+		remoteViews = new RemoteViews(context.getPackageName(), R.layout.app_widget);
 
-		String now = formatter.format(new Date());
+		new ServerSync(context,null).execute();
+
 		//update widget
 		String budgeted = "";
 		String saveGoal = "";
@@ -79,15 +81,19 @@ public class TDWidgetUpdater extends TimerTask {
 			saveActual = Utils.getDoubleAsCurrency(budget.getSaveActual());
 		}
 
+
+		String now = formatter.format(new Date());
 		// Launch summary activity on click
 		Intent intent = new Intent(context, SummaryActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-		remoteViews = new RemoteViews(context.getPackageName(), R.layout.app_widget);
+
 		remoteViews.setTextViewText(R.id.budgeted, budgeted);
 		remoteViews.setTextViewText(R.id.savings_goal, saveGoal);
 		remoteViews.setTextViewText(R.id.spent, spent);
 		remoteViews.setTextViewText(R.id.actual_savings, now);
 		remoteViews.setOnClickPendingIntent(R.id.widget, pendingIntent);
+
+
 		// Tell AppWidgetManager to update current app widget
 		if (appWidgetManager != null)
 			appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
