@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable, NfcAdapter.CreateNdefMessageCallback, iBudgetUpdate {
 
-    private Budget budget;
+    private static Budget budget;
     private String budgetFile = "budgetFile.bin";
     private Context context = App.getAppContext();
     //private TextView income, budgeted, saveGoal, spent, saveActual;
@@ -177,6 +177,10 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 			return true;
 		}
         return super.onOptionsItemSelected(item);
+    }
+
+    static public Budget getBudget(){
+        return budget;
     }
 
 	private void saveBudget(){

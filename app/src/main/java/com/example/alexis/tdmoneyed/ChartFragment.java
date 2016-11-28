@@ -17,6 +17,9 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 
@@ -32,7 +35,8 @@ public class ChartFragment extends Fragment {
 
   //  private OnFragmentInteractionListener mListener;
     private Context context = App.getAppContext();
-    protected Budget budget = BuilderActivity.getBudget();
+    protected Budget budget;// = MainActivity.getBudget();
+    private String budgetFile = "budgetFile.bin";
 
     public ChartFragment() {
         // Required empty public constructor
@@ -49,9 +53,7 @@ public class ChartFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
     }
 
     @Override
@@ -61,6 +63,21 @@ public class ChartFragment extends Fragment {
         //RelativeLayout rl = (RelativeLayout)v.findViewById(R.id.inner_layout);
         FrameLayout rl = (FrameLayout)v.findViewById(R.id.frag_layout);
         ImageView imgChart = (ImageView)v.findViewById(R.id.chart);
+
+  //      budget = MainActivity.getBudget();
+        budget = new Budget();
+        try {
+            ObjectInputStream getBudget = new ObjectInputStream(context.openFileInput(budgetFile));
+            budget = (Budget)getBudget.readObject();
+            getBudget.close();
+        } catch (FileNotFoundException ex){
+            ex.printStackTrace();
+        } catch (IOException ex){
+            ex.printStackTrace();
+        } catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }
+
         ArrayList<BarEntry> entries = new ArrayList<>();
         if(budget != null) {
             // set bar chart
