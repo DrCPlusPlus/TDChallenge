@@ -106,6 +106,10 @@ public class SummaryActivity extends AppCompatActivity implements Serializable {
             trHeader.addView(label);
             trHeader.addView(value);
             trHeader.setBackgroundColor(ContextCompat.getColor(context, R.color.tableRow));
+            if (budget.isCategoryOverBudget(header)) {
+				trHeader.setBackgroundColor(Color.RED);
+				label.setTextColor(Color.WHITE);
+			}
             table.addView(trHeader);
             // data
             for(int idx = 0; idx < list.size(); ++idx){

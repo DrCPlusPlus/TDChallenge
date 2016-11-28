@@ -42,6 +42,16 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 		this.budgetUpdate = ibu;
 	}
 
+	private void close(){
+		try{
+			s.close();
+		}
+		catch(Exception ex)
+		{
+
+		}
+	}
+
 	@Override
 	protected Boolean doInBackground(Void... voids) {
 		boolean returnValue = true;
@@ -52,18 +62,24 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 		//load settings
 		loadSettings();
 
-		if (settings.getAccountNumber() == null || settings.getAccountNumber().equals(""))
-		{
-			errMessage = "Please enter an account number";
-			return false;
-		}
-
 		if (!connect())
 			return false;
 
 		//get all the categories
+		if (!getAllCategories()) {
+			returnValue = false;
+			close();
+		}
+
+		if (settings.getAccountNumber() == null || settings.getAccountNumber().equals(""))
+		{
+			close();
+			errMessage = "Please enter an account number";
+			return false;
+		}
+
 		//get all the new transactions for this account
-		if (!getAllCategories() || !getAccountTransactions())
+		if (!getAccountTransactions())
 			returnValue = false;
 
 		if (returnValue)
@@ -72,13 +88,7 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 		if(returnValue)
 			saveBudget();
 
-		try{
-			s.close();
-		}
-		catch(Exception ex)
-		{
-
-		}
+		close();
 		return returnValue;
 	}
 
@@ -314,7 +324,7 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 
 				if (packageSize == 0)
 				{
-					allAccountTransactions = new ArrayList<>();
+					allCategories = new ArrayList<>();
 					return true;
 				}
 

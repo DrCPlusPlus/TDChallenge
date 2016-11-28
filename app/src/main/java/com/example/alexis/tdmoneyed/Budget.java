@@ -128,61 +128,119 @@ public class Budget implements Serializable {
 		return -1;
 	}
 
+	public boolean isCategoryOverBudget(String catName){
+		if (categories != null) {
+			catName = catName.toUpperCase();
+			TreeMap<String, Double> budgetAmounts = new TreeMap<>();
+
+			for (Category c : categories)
+				budgetAmounts.put(c.getCategoryName(), 0.0);
+
+
+			if (college != null)
+				for (ListItem li : college)
+					budgetAmounts.put("COLLEGE", budgetAmounts.get("COLLEGE") + li.getAmount());
+
+			if (food != null)
+				for (ListItem li : food)
+					budgetAmounts.put("FOOD", budgetAmounts.get("FOOD") + li.getAmount());
+
+			if (transport != null)
+				for (ListItem li : transport)
+					budgetAmounts.put("TRANSPORTATION", budgetAmounts.get("TRANSPORTATION") + li.getAmount());
+
+			if (debt != null)
+				for (ListItem li : debt)
+					budgetAmounts.put("DEBT", budgetAmounts.get("DEBT") + li.getAmount());
+
+			if (entertain != null)
+				for (ListItem li : entertain)
+					budgetAmounts.put("ENTERTAINMENT", budgetAmounts.get("ENTERTAINMENT") + li.getAmount());
+
+			if (pets != null)
+				for (ListItem li : pets)
+					budgetAmounts.put("PETS", budgetAmounts.get("PETS") + li.getAmount());
+
+			if (personal != null)
+				for (ListItem li : personal)
+					budgetAmounts.put("PERSONAL", budgetAmounts.get("PERSONAL") + li.getAmount());
+
+			TreeMap<Integer, Double> actualAmounts = new TreeMap<Integer, Double>();
+
+			for (Category c : categories)
+				actualAmounts.put(c.getId(), 0.0);
+
+			for (Transaction t : transactions)
+				actualAmounts.put(t.getCategoryId(), actualAmounts.get(t.getCategoryId()) + t.getAmount());
+
+			if (actualAmounts.size() > 0 && budgetAmounts.size() > 0) {
+				if (budgetAmounts.get(catName) > 0.0 &&  actualAmounts.get(getCategoryId(catName)) > budgetAmounts.get(catName))
+					return true;
+			}
+		}
+		return false;
+	}
 
 	public boolean isOverBudget(){
-		double collegeBud = 0.0;
-		double foodBud = 0.0;
-		double transportBud = 0.0;
-		double debtBud = 0.0;
-		double entertainBud = 0.0;
-		double petsBud = 0.0;
-		double personalBud = 0.0;
 
-		if (college != null)
-			for(ListItem li : college)
-				collegeBud += li.getAmount();
-
-		if (food != null)
-			for (ListItem li : food)
-				foodBud += li.getAmount();
-
-		if (transport != null)
-			for (ListItem li : transport)
-				transportBud += li.getAmount();
-
-		if (debt != null)
-			for (ListItem li : debt)
-				debtBud += li.getAmount();
-
-		if (entertain != null)
-			for (ListItem li : entertain)
-				entertainBud += li.getAmount();
-
-		if (pets != null)
-			for (ListItem li : pets)
-				petsBud += li.getAmount();
-
-		if(personal != null)
-			for (ListItem li : personal)
-				personalBud += li.getAmount();
-
-		TreeMap<Integer, Double> actualAmounts = new TreeMap<Integer, Double>();
-
-		for(Category c : categories)
-			actualAmounts.put(c.getId(), 0.0);
-
-		for(Transaction t : transactions)
-			actualAmounts.put(t.getCategoryId(), actualAmounts.get(t.getCategoryId()) + t.getAmount());
-
-		if (actualAmounts.get(getCategoryId("COLLEGE")) > collegeBud || actualAmounts.get(getCategoryId("FOOD")) > foodBud ||
-				actualAmounts.get(getCategoryId("TRANSPORTATION")) > transportBud ||
-				actualAmounts.get(getCategoryId("DEBT")) > debtBud ||
-				actualAmounts.get(getCategoryId("ENTERTAINMENT")) > entertainBud ||
-				actualAmounts.get(getCategoryId("PETS")) > petsBud ||
-				actualAmounts.get(getCategoryId("PERSONAL")) > personalBud)
-			return true;
-
-		return false;
+		return isCategoryOverBudget("COLLEGE") || isCategoryOverBudget("FOOD") || isCategoryOverBudget("PETS") ||
+				isCategoryOverBudget("PERSONAL") || isCategoryOverBudget("ENTERTAINMENT") || isCategoryOverBudget("DEBT") ||
+				isCategoryOverBudget("TRANSPORTATION");
+//		double collegeBud = 0.0;
+//		double foodBud = 0.0;
+//		double transportBud = 0.0;
+//		double debtBud = 0.0;
+//		double entertainBud = 0.0;
+//		double petsBud = 0.0;
+//		double personalBud = 0.0;
+//
+//		if (college != null)
+//			for(ListItem li : college)
+//				collegeBud += li.getAmount();
+//
+//		if (food != null)
+//			for (ListItem li : food)
+//				foodBud += li.getAmount();
+//
+//		if (transport != null)
+//			for (ListItem li : transport)
+//				transportBud += li.getAmount();
+//
+//		if (debt != null)
+//			for (ListItem li : debt)
+//				debtBud += li.getAmount();
+//
+//		if (entertain != null)
+//			for (ListItem li : entertain)
+//				entertainBud += li.getAmount();
+//
+//		if (pets != null)
+//			for (ListItem li : pets)
+//				petsBud += li.getAmount();
+//
+//		if(personal != null)
+//			for (ListItem li : personal)
+//				personalBud += li.getAmount();
+//
+//		TreeMap<Integer, Double> actualAmounts = new TreeMap<Integer, Double>();
+//
+//		for(Category c : categories)
+//			actualAmounts.put(c.getId(), 0.0);
+//
+//		for(Transaction t : transactions)
+//			actualAmounts.put(t.getCategoryId(), actualAmounts.get(t.getCategoryId()) + t.getAmount());
+//
+//		if (actualAmounts.size() > 0)
+//		{
+//			if (actualAmounts.get(getCategoryId("COLLEGE")) > collegeBud || actualAmounts.get(getCategoryId("FOOD")) > foodBud ||
+//					actualAmounts.get(getCategoryId("TRANSPORTATION")) > transportBud ||
+//					actualAmounts.get(getCategoryId("DEBT")) > debtBud ||
+//					actualAmounts.get(getCategoryId("ENTERTAINMENT")) > entertainBud ||
+//					actualAmounts.get(getCategoryId("PETS")) > petsBud ||
+//					actualAmounts.get(getCategoryId("PERSONAL")) > personalBud)
+//				return true;
+//		}
+//		return false;
 
 	}
 }
