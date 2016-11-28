@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.RemoteViews;
 
@@ -73,12 +74,15 @@ public class TDWidgetUpdater extends TimerTask{
 		String saveGoal = "";
 		String spent = "";
 		String saveActual = "";
+		Double saveActualNum =  budget.getSaveActual();
 
 		if(budget != null) {
 			budgeted = Utils.getDoubleAsCurrency(budget.getBudgeted());
 			saveGoal = Utils.getDoubleAsCurrency(budget.getSaveGoal());
 			spent = Utils.getDoubleAsCurrency(budget.getSpent());
 			saveActual = Utils.getDoubleAsCurrency(budget.getSaveActual());
+			if(saveActualNum < 0)
+				remoteViews.setInt(R.id.widget_header, "setBackgroundColor", Color.RED);
 		}
 
 
