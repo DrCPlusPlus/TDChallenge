@@ -64,12 +64,11 @@ public class BuilderActivity extends AppCompatActivity {
             }
         });
 
+        budget = new Budget();
         // populate application object
         try{
             ObjectInputStream getBudget = new ObjectInputStream(openFileInput(budgetFile));
             budget = (Budget)getBudget.readObject();
-            if(budget == null)
-                budget = new Budget();
             getBudget.close();
 
         }catch (FileNotFoundException ex){

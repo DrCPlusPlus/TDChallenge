@@ -31,7 +31,7 @@ public abstract class CategoryBase extends Fragment implements View.OnFocusChang
 		listItems = new ArrayList<ListItem>();
 		String[] listArray = getResources().getStringArray(stringArrayId);
 
-		if (workingList == null) {
+		if (workingList == null || workingList.size() < listArray.length) {
 			for (int idx = 0; idx < listArray.length; ++idx) {
 				ListItem item = new ListItem(listArray[idx], false, 0.00);
 				listItems.add(item);

@@ -17,14 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.utils.ColorTemplate;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -59,11 +51,10 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 
 		btnShareBudget = (Button)findViewById(R.id.shareBtn);
 		beamEnabled = false;
+        budget = new Budget();
         try {
             ObjectInputStream getBudget = new ObjectInputStream(openFileInput(budgetFile));
             budget = (Budget)getBudget.readObject();
-            if(budget == null)
-                budget = new Budget();
             getBudget.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();
@@ -93,32 +84,6 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 				startActivity(i);
 			}
 		}
-
-//        // set bar chart
-//        ArrayList<BarEntry> entries = new ArrayList<>();
-//        float budgetChart = (float) budget.getBudgeted();
-//        float saveGoalChart = (float) budget.getSaveGoal();
-//        float spentChart = (float) budget.getSpent();
-//        float saveActualChart = (float) budget.getSaveActual();
-//        entries.add(new BarEntry(budgetChart, 0));
-//        entries.add(new BarEntry(saveGoalChart, 1));
-//        entries.add(new BarEntry(spentChart, 2));
-//        entries.add(new BarEntry(saveActualChart, 3));
-//        BarDataSet dataset = new BarDataSet(entries, "Budget Totals");
-//        // charts x-axis labels
-//        ArrayList<String> labels = new ArrayList<String>();
-//        labels.add("Budget");
-//        labels.add("Goal");
-//        labels.add("Spent");
-//        labels.add("Saved");
-//        // create chart
-//        BarChart chart = new BarChart(this);
-//        float x = 5;
-//        setContentView(chart);
-//        BarData data = new BarData(labels, dataset);
-//        chart.setData(data);
-//        chart.setDescription("Budgets Totals");
-//        dataset.setColors(ColorTemplate.VORDIPLOM_COLORS);
     }
 
 	@Override
@@ -127,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 		this.budget = b;
 		//setHomeScreenInfo();
 	}
+
 //	private void setHomeScreenInfo(){
 //		if(budget != null) {
 //

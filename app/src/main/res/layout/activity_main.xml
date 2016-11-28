@@ -35,88 +35,95 @@
         android:text="Home summary"
         android:background="@color/TDLightGreen"/>
 
-    <RelativeLayout
-        android:id="@+id/inner_layout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:background="@color/tableRow"
-        android:layout_marginBottom="20dp"
-        android:paddingLeft="16dp"
-        android:paddingTop="30dp"
-        android:paddingRight="16dp"
-        android:paddingBottom="30dp">
-        <fragment android:name="com.example.alexis.tdmoneyed.ChartFragment"
-            android:id="@+id/main_chart"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/inner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
+                android:background="@color/tableRow"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="16dp"
+                android:paddingTop="30dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="30dp">
+                <fragment android:name="com.example.alexis.tdmoneyed.ChartFragment"
+                    android:id="@+id/main_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp" />
+            </LinearLayout>
 
-    </RelativeLayout>
+                <Button
+                    android:text="Manage Budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/inner_layout"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="16dp"
+                    android:paddingLeft="26dp"
+                    android:paddingRight="28dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="13dp"
+                    android:textColor="#184F34"
+                    android:textAllCaps="false"
+                    android:textSize="19dp"
+                    android:gravity="center_vertical|left"
+                    android:drawableRight="@drawable/ic_settings_30dp"
+                    android:background="@drawable/button_normal"
+                    android:id="@+id/buildBtn"
+                    android:onClick="onClickBuild" />
 
-        <Button
-            android:text="Manage Budget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/inner_layout"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginRight="16dp"
-            android:paddingLeft="26dp"
-            android:paddingRight="28dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="13dp"
-            android:textColor="#184F34"
-            android:textAllCaps="false"
-            android:textSize="19dp"
-            android:gravity="center_vertical|left"
-            android:drawableRight="@drawable/ic_settings_30dp"
-            android:background="@drawable/button_normal"
-            android:id="@+id/buildBtn"
-            android:onClick="onClickBuild" />
+                <Button
+                    android:text="Budget Summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/buildBtn"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:paddingLeft="26dp"
+                    android:paddingRight="28dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="13dp"
+                    android:textColor="#184F34"
+                    android:textAllCaps="false"
+                    android:textSize="19dp"
+                    android:gravity="center_vertical|left"
+                    android:drawableRight="@drawable/ic_folder_35dp"
+                    android:background="@drawable/button_normal"
+                    android:id="@+id/summaryBtn"
+                    android:onClick="onClickSummary" />
 
-        <Button
-            android:text="Budget Summary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/buildBtn"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
-            android:paddingLeft="26dp"
-            android:paddingRight="28dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="13dp"
-            android:textColor="#184F34"
-            android:textAllCaps="false"
-            android:textSize="19dp"
-            android:gravity="center_vertical|left"
-            android:drawableRight="@drawable/ic_folder_35dp"
-            android:background="@drawable/button_normal"
-            android:id="@+id/summaryBtn"
-            android:onClick="onClickSummary" />
-
-        <Button
-            android:text="Share Budget"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/summaryBtn"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
-            android:paddingLeft="26dp"
-            android:paddingRight="28dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="13dp"
-            android:textColor="#184F34"
-            android:textAllCaps="false"
-            android:textSize="19dp"
-            android:gravity="center_vertical|left"
-            android:drawableRight="@drawable/ic_input_35dp"
-            android:background="@drawable/button_normal"
-            android:id="@+id/shareBtn"
-            android:onClick="onClickShare" />
-
+                <Button
+                    android:text="Share Budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/summaryBtn"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:paddingLeft="26dp"
+                    android:paddingRight="28dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="13dp"
+                    android:textColor="#184F34"
+                    android:textAllCaps="false"
+                    android:textSize="19dp"
+                    android:gravity="center_vertical|left"
+                    android:drawableRight="@drawable/ic_input_35dp"
+                    android:background="@drawable/button_normal"
+                    android:id="@+id/shareBtn"
+                    android:onClick="onClickShare" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
 
 

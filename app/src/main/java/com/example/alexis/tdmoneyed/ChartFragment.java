@@ -83,7 +83,6 @@ public class ChartFragment extends Fragment {
         // create chart
         BarChart chart = new BarChart(context);
         float x = 5;
-        //((MainActivity)context).setContentView(chart);
         rl.addView(chart);
         BarData data = new BarData(labels, dataset);
         chart.setData(data);

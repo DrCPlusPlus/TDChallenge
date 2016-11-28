@@ -1,10 +1,7 @@
 package com.example.alexis.tdmoneyed;
 
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -17,9 +14,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * An AsyncTask to communicate with the server

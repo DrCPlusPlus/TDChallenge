@@ -50,12 +50,11 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(my_toolbar);
         getSupportActionBar().setTitle("Financial Education");
         getSupportActionBar().setIcon(R.drawable.td_shield);
-		settings = new Settings();
 
+        settings = new Settings();
 		try {
             ObjectInputStream getSettings = new ObjectInputStream(openFileInput(settingsFile));
             settings = (Settings)getSettings.readObject();
-
             getSettings.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();
