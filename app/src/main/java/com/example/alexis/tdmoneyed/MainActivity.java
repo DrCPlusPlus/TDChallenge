@@ -24,7 +24,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class MainActivity extends AppCompatActivity implements Serializable, NfcAdapter.CreateNdefMessageCallback {
+public class MainActivity extends AppCompatActivity implements Serializable, NfcAdapter.CreateNdefMessageCallback, iBudgetUpdate {
 
     private Budget budget;
     private String budgetFile = "budgetFile.bin";
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+		new ServerSync(this, this).execute();
 
         // set toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -84,6 +86,12 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 		}
     }
 
+	@Override
+	public void setBudget(Budget b)
+	{
+		this.budget = b;
+		setHomeScreenInfo();
+	}
 	private void setHomeScreenInfo(){
 		if(budget != null) {
 
