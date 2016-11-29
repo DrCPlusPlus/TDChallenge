@@ -4,7 +4,6 @@ package com.example.alexis.tdmoneyed;
 * Intro adapted from: https://github.com/paolorotolo/AppIntro
 * */
 
-import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -19,14 +18,10 @@ public class TDMoneyEdIntro extends AppIntro {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_tdmoney_ed_intro);
+
 
 		// Add your slide's fragments here
 		// AppIntro will automatically generate the dots indicator and buttons.
-//		addSlide(first_fragment);
-//		addSlide(second_fragment);
-//		addSlide(third_fragment);
-//		addSlide(fourth_fragment);
 
 		// Instead of fragments, you can also use our default slide
 		// Just set a title, description, background and image. AppIntro will do the rest
@@ -42,24 +37,7 @@ public class TDMoneyEdIntro extends AppIntro {
 		// SHOW or HIDE the statusbar
 		showStatusBar(true);
 
-		// Edit the color of the nav bar on Lollipop+ devices
-		//setNavBarColor(R.color.TDLightGreen);
-
-		// Turn vibration on and set intensity
-		// NOTE: you will need to ask VIBRATE permission in Manifest if you haven't already
-//		setVibrate(true);
-//		setVibrateIntensity(30);
-
-		// Animations -- use only one of the below. Using both could cause errors.
 		setFadeAnimation(); // OR
-//		setZoomAnimation(); // OR
-//		setFlowAnimation(); // OR
-//		setSlideOverAnimation(); // OR
-//		setDepthAnimation(); // OR
-		//setCustomTransformer(yourCustomTransformer);
-
-		// Permissions -- takes a permission and slide number
-		//askForPermissions(new String[]{Manifest.permission.SEND_SMS}, 6);
 
 	}
 
