@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 	private NfcAdapter mNfcAdapter;
 	private boolean beamEnabled;
 	public static boolean introShown = false;
+	private boolean beamStart = false;
 
 
     @Override
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		new ServerSync(this, this).execute();
+		if (!beamStart)
+			new ServerSync(this, this).execute();
 
         // set toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -82,7 +84,10 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 	@Override
 	public void setBudget(Budget b)
 	{
-		this.budget = b;
+		if (!beamStart) {
+			this.budget = b;
+			saveBudget();
+		}
 	}
 
     public void onClickBuild(View view){
@@ -189,6 +194,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 		super.onResume();
 		// Check to see that the Activity started due to an Android Beam
 		if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
+			beamStart = true;
 			processIntent(getIntent());
 		}
 	}
@@ -226,9 +232,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
         NdefMessage msg = (NdefMessage) rawMsgs[0];
         // record 0 contains the MIME type, record 1 is the AAR, if present
 		budget = (Budget)(Utils.fromByteArray(msg.getRecords()[0].getPayload()));
-
 		saveBudget();
-		//setHomeScreenInfo();
     }
 	//endregion
 }
