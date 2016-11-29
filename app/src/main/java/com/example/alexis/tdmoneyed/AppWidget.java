@@ -30,8 +30,8 @@ public class AppWidget extends AppWidgetProvider implements Serializable{
 			updateAppWidget(context, appWidgetManager, appWidgetId);
 		}
         Log.e("onUpdate", "onUpdate called" + Calendar.getInstance().getTime().toString());
-		//timer = new Timer();
-		//timer.scheduleAtFixedRate(new TDWidgetUpdater(context, appWidgetManager, appWidgetIds), 1, 5000);
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new TDWidgetUpdater(context, appWidgetManager, appWidgetIds), 1, 5000);
 
     }
 

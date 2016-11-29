@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		//new ServerSync(this, this).execute();
+		new ServerSync(this, this).execute();
 
         // set toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
