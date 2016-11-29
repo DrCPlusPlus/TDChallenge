@@ -15,21 +15,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements Serializable, NfcAdapter.CreateNdefMessageCallback, iBudgetUpdate {
 
     private static Budget budget;
     private String budgetFile = "budgetFile.bin";
-    private Context context = App.getAppContext();
-    //private TextView income, budgeted, saveGoal, spent, saveActual;
 	private Button btnShareBudget;
 	private NfcAdapter mNfcAdapter;
 	private boolean beamEnabled;
@@ -41,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-		new ServerSync(this, this).execute();
+		//new ServerSync(this, this).execute();
 
         // set toolbar
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -55,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
         try {
             ObjectInputStream getBudget = new ObjectInputStream(openFileInput(budgetFile));
             budget = (Budget)getBudget.readObject();
+			if (budget == null)
+				budget = new Budget();
             getBudget.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();
@@ -64,12 +63,6 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
             ex.printStackTrace();
         }
 
-//        income = (TextView)findViewById(R.id.income);
-//        budgeted = (TextView)findViewById(R.id.budgeted);
-//        saveGoal = (TextView)findViewById(R.id.savings_goal);
-//        spent = (TextView)findViewById(R.id.spent);
-//        saveActual = (TextView)findViewById(R.id.actual_savings);
-//		setHomeScreenInfo();
 
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter == null) {
@@ -90,20 +83,7 @@ public class MainActivity extends AppCompatActivity implements Serializable, Nfc
 	public void setBudget(Budget b)
 	{
 		this.budget = b;
-		//setHomeScreenInfo();
 	}
-
-//	private void setHomeScreenInfo(){
-//		if(budget != null) {
-//
-//			income.setText(Utils.getDoubleAsCurrency(budget.getIncome()));
-//			budgeted.setText(Utils.getDoubleAsCurrency(budget.getBudgeted()));
-//			saveGoal.setText(Utils.getDoubleAsCurrency(budget.getSaveGoal()));
-//			spent.setText(Utils.getDoubleAsCurrency(budget.getSpent()));
-//			saveActual.setText(Utils.getDoubleAsCurrency(budget.getSaveActual()));
-//
-//		}
-//	}
 
     public void onClickBuild(View view){
         Intent ib = new Intent(this, BuilderActivity.class);

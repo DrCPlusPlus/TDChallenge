@@ -75,7 +75,6 @@ public class TDWidgetUpdater extends TimerTask{
 		String saveGoal = "";
 		String spent = "";
 		String saveActual = "";
-		Double saveActualNum =  budget.getSaveActual();
 
 		if(budget != null) {
 			budgeted = Utils.getDoubleAsCurrency(budget.getBudgeted());
@@ -89,7 +88,6 @@ public class TDWidgetUpdater extends TimerTask{
 		}
 
 
-//		String now = formatter.format(new Date());
 		// Launch summary activity on click
 		Intent intent = new Intent(context, SummaryActivity.class);
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);

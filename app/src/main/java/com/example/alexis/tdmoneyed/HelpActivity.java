@@ -17,7 +17,6 @@ import java.io.ObjectOutputStream;
 
 public class HelpActivity extends AppCompatActivity {
 
-   // Budget budget = (Budget)getApplication();
     String budgetFile = "budgetStorage.bin";
 
     @Override

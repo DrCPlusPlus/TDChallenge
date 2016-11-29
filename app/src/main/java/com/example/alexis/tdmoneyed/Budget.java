@@ -129,7 +129,7 @@ public class Budget implements Serializable {
 	}
 
 	public boolean isCategoryOverBudget(String catName){
-		if (categories != null) {
+		if (categories != null && categories.size() > 0) {
 			catName = catName.toUpperCase();
 			TreeMap<String, Double> budgetAmounts = new TreeMap<>();
 

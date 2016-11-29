@@ -81,7 +81,6 @@ public class ListAdapter extends BaseAdapter {
         }
 
 
- //       holder.caption.setText("0.00");
         //we need to update adapter once we finish with editing
         if (listener != null) {
             holder.caption.setOnFocusChangeListener(listener);

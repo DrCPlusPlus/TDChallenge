@@ -69,6 +69,8 @@ public class BuilderActivity extends AppCompatActivity {
         try{
             ObjectInputStream getBudget = new ObjectInputStream(openFileInput(budgetFile));
             budget = (Budget)getBudget.readObject();
+            if (budget == null)
+                budget = new Budget();
             getBudget.close();
 
         }catch (FileNotFoundException ex){

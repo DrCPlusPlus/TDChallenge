@@ -111,6 +111,8 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 		try {
 			ObjectInputStream getBudget = new ObjectInputStream(context.openFileInput(budgetFile));
 			budget = (Budget)getBudget.readObject();
+			if (budget == null)
+				budget = new Budget();
 			getBudget.close();
 		} catch (FileNotFoundException ex){
 			ex.printStackTrace();

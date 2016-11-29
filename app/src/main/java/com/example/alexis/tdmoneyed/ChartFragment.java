@@ -35,7 +35,7 @@ public class ChartFragment extends Fragment {
 
   //  private OnFragmentInteractionListener mListener;
     private Context context = App.getAppContext();
-    protected Budget budget;// = MainActivity.getBudget();
+    protected Budget budget;
     private String budgetFile = "budgetFile.bin";
 
     public ChartFragment() {
@@ -60,15 +60,15 @@ public class ChartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_chart, container, false);
-        //RelativeLayout rl = (RelativeLayout)v.findViewById(R.id.inner_layout);
         FrameLayout rl = (FrameLayout)v.findViewById(R.id.frag_layout);
         ImageView imgChart = (ImageView)v.findViewById(R.id.chart);
 
-  //      budget = MainActivity.getBudget();
         budget = new Budget();
         try {
             ObjectInputStream getBudget = new ObjectInputStream(context.openFileInput(budgetFile));
             budget = (Budget)getBudget.readObject();
+            if (budget == null)
+                budget = new Budget();
             getBudget.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();

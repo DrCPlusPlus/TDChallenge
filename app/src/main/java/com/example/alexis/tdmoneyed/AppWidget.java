@@ -30,16 +30,8 @@ public class AppWidget extends AppWidgetProvider implements Serializable{
 			updateAppWidget(context, appWidgetManager, appWidgetId);
 		}
         Log.e("onUpdate", "onUpdate called" + Calendar.getInstance().getTime().toString());
-		timer = new Timer();
-		timer.scheduleAtFixedRate(new TDWidgetUpdater(context, appWidgetManager, appWidgetIds), 1, 5000);
-
-//		RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.app_widget);
-//
-//		new ServerSync(context, null, remoteViews).execute();
-//
-//		// Tell AppWidgetManager to update current app widget
-//		if (appWidgetManager != null)
-//			appWidgetManager.updateAppWidget(appWidgetIds, remoteViews);
+		//timer = new Timer();
+		//timer.scheduleAtFixedRate(new TDWidgetUpdater(context, appWidgetManager, appWidgetIds), 1, 5000);
 
     }
 
