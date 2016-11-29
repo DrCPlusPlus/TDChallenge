@@ -2,6 +2,7 @@ package com.example.alexis.tdmoneyed;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.telephony.SmsManager;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -125,7 +126,8 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 		try {
 			ObjectInputStream getSettings = new ObjectInputStream(context.openFileInput(settingsFile));
 			settings = (Settings)getSettings.readObject();
-
+			if (settings == null)
+				settings = new Settings();
 			getSettings.close();
 		} catch (FileNotFoundException ex){
 			ex.printStackTrace();
@@ -253,7 +255,7 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 					budget.addTransaction(t);
 				}
 				allAccountTransactions = items;
-
+				checkIfOverBudget();
 				return true;
 			}
 			else if (Definitions.ACK_ERROR == returnCode)
@@ -415,5 +417,25 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 
 		byte returnCode = receiveCode();
 		return returnCode == Definitions.ACK_OK;
+	}
+
+	//checkIfOverBudget
+	//check if the user has gone over budget
+	//if so sends a text message to the guardian if provided
+	//will only run on subsequent new transactions that will put the user into further debt
+	private void checkIfOverBudget(){
+		if (!settings.getGardiansNumber().equals("") && budget.isOverBudget()) {
+			try {
+				StringBuilder sb = new StringBuilder();
+				sb.append("TDMoneyEd would like you to know that a youth assigned to you has gone over budget in the following categories: ");
+				sb.append(budget.getOverBudgetCategories());
+				SmsManager smsManager = SmsManager.getDefault();
+				smsManager.sendTextMessage(settings.getGardiansNumber(), null, sb.toString(), null, null);
+
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

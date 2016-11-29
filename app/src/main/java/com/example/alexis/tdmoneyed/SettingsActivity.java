@@ -55,6 +55,8 @@ public class SettingsActivity extends AppCompatActivity {
 		try {
             ObjectInputStream getSettings = new ObjectInputStream(openFileInput(settingsFile));
             settings = (Settings)getSettings.readObject();
+            if (settings == null)
+                settings = new Settings();
             getSettings.close();
         } catch (FileNotFoundException ex){
             ex.printStackTrace();

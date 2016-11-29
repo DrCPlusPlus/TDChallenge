@@ -4,6 +4,7 @@ package com.example.alexis.tdmoneyed;
 * Intro adapted from: https://github.com/paolorotolo/AppIntro
 * */
 
+import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -58,7 +59,8 @@ public class TDMoneyEdIntro extends AppIntro {
 		//setCustomTransformer(yourCustomTransformer);
 
 		// Permissions -- takes a permission and slide number
-		//askForPermissions(new String[]{Manifest.permission.NFC}, 3);
+		//askForPermissions(new String[]{Manifest.permission.SEND_SMS}, 6);
+
 	}
 
 	@Override
