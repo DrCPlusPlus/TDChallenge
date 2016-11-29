@@ -71,6 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getCurrentFocus().clearFocus();
                 Intent i = new Intent(setAct, MainActivity.class);
                 startActivity(i);
             }
@@ -103,7 +104,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus){
-                    Toast.makeText(getApplicationContext(), "Lost focus", Toast.LENGTH_LONG).show();
                     EditText inputValue = (EditText) v;
                     setSettingsValues(inputValue);
                 }

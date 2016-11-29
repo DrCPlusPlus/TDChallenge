@@ -426,14 +426,24 @@ public class ServerSync extends AsyncTask<Void, Void, Boolean> {
 	//if so sends a text message to the guardian if provided
 	//will only run on subsequent new transactions that will put the user into further debt
 	private void checkIfOverBudget(){
-		if (!settings.getGardiansNumber().equals("") && budget.isOverBudget()) {
+		if (budget.isOverBudget()) {
 			try {
 				StringBuilder sb = new StringBuilder();
-				sb.append("TDMoneyEd would like you to know that a youth assigned to you has gone over budget in the following categories: ");
-				sb.append(budget.getOverBudgetCategories());
+				String overBudgetCategories = budget.getOverBudgetCategories();
 				SmsManager smsManager = SmsManager.getDefault();
-				smsManager.sendTextMessage(settings.getGardiansNumber(), null, sb.toString(), null, null);
 
+				if(!settings.getGardiansNumber().equals("")) {
+					sb.append("TDMoneyEd would like you to know that a youth assigned to you has gone over budget in the following categories: ");
+					sb.append(overBudgetCategories);
+					smsManager.sendTextMessage(settings.getGardiansNumber(), null, sb.toString(), null, null);
+				}
+
+				if(!settings.getYouthsNumber().equals("")) {
+					sb = new StringBuilder();
+					sb.append("TDMoneyEd would like you to know that you have gone over your budget in the following categories, your guardian will be notified as well: ");
+					sb.append(overBudgetCategories);
+					smsManager.sendTextMessage(settings.getYouthsNumber(), null, sb.toString(), null, null);
+				}
 			}
 			catch (Exception e) {
 				e.printStackTrace();
